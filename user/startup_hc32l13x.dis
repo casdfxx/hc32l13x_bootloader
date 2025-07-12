@@ -1,0 +1,43 @@
+
+startup_hc32l13x.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__Vectors-0x8>:
+   0:	00000200 	.word	0x00000200
+   4:	00000200 	.word	0x00000200
+
+00000008 <__Vectors>:
+   8:	00000000 	.word	0x00000000
+   c:	000000c8 	.word	0x000000c8
+  10:	000000d0 	.word	0x000000d0
+  14:	000000d2 	.word	0x000000d2
+	...
+  34:	000000d4 	.word	0x000000d4
+	...
+  40:	000000d6 	.word	0x000000d6
+  44:	000000d8 	.word	0x000000d8
+	...
+
+000000c8 <Reset_Handler>:
+  c8:	4804      	ldr	r0, [pc, #16]	; (dc <SysTick_Handler+0x4>)
+  ca:	4780      	blx	r0
+  cc:	4804      	ldr	r0, [pc, #16]	; (e0 <SysTick_Handler+0x8>)
+  ce:	4700      	bx	r0
+
+000000d0 <NMI_Handler>:
+  d0:	e7fe      	b.n	d0 <NMI_Handler>
+
+000000d2 <HardFault_Handler>:
+  d2:	e7fe      	b.n	d2 <HardFault_Handler>
+
+000000d4 <SVC_Handler>:
+  d4:	e7fe      	b.n	d4 <SVC_Handler>
+
+000000d6 <PendSV_Handler>:
+  d6:	e7fe      	b.n	d6 <PendSV_Handler>
+
+000000d8 <SysTick_Handler>:
+  d8:	e7fe      	b.n	d8 <SysTick_Handler>
+	...

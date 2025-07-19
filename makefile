@@ -31,7 +31,7 @@ all : startup liba link
 	
 	
 startup:
-	$(CC)gcc $(CFLAG) $(CPU) $(INCLUDE) -c $(startups).s -o $(startups).o
+	$(CC)gcc $(CFLAG) $(CPU) $(INCLUDE) -c $(startups).s -o $(startups).o  -lnosys
 
 link : $(patsubst %.c, %.o, $(srcs)) $(startups).o
 	$(CC)gcc $^ -Tuser/hc32l13x.lds $(LDFLAG) -Wl,-Map=$(target).map -o $(target).elf  
@@ -40,7 +40,9 @@ link : $(patsubst %.c, %.o, $(srcs)) $(startups).o
 
 liba : $(patsubst %.c, %.o, $(drivers))
 	$(info $^)
+	mkdir lib -p
 	ar -rcs lib/libdriver.a $^
+
 
 %.o : %.c
 	$(CC)gcc $(CFLAG) $(CPU) $(INCLUDE) $(LDFLAG) -c $^ -o $@
